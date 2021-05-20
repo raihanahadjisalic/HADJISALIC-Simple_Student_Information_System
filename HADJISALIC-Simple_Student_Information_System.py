@@ -3,7 +3,7 @@
 
 import csv
 
-student_information = ['name', 'id_number', 'year level', 'gender', 'course']
+student_information = ['NAME', 'ID NUMBER', 'YEAR LEVEL', 'GENDER', 'COURSE']
 student_database = 'Studentdata.csv'
 
 def main_display():
@@ -27,13 +27,13 @@ def display_student():
     with open(student_database, "r", encoding = "utf-8") as f:
         reader = csv.reader(f)
         for x in student_information :
-            print( x, end = "\n")
+            print( x, end = "\t ||")
         print("\n-------------------------------------------------")
         
         for row in reader:
             for item in row:
-                print( item, end = "\n")
-            print()        
+                print( item, end = "\t ||")
+            print("\n")        
     input("Press any key to continue")
 
 def add_student():
@@ -47,11 +47,26 @@ def add_student():
     for field in student_information:
         value = input("Enter " + field + ": ")
         student_data.append(value)
-
-    with open(student_database, "a", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerows([student_data])
-
+    if student_data[0] == "":
+        print("Please enter information")
+        return
+    if student_data[1] == "":
+        print("Please enter information")
+        return
+    if student_data[2] == "":
+        print("Please enter information")
+        return
+    if student_data[3] == "":
+        print("Please enter information")
+        return
+    if student_data[4] == "":
+        print("Please enter information")
+        return
+    else:
+        with open(student_database, "a", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerows([student_data])
+    print(student_data)
     print("Data saved successfully")
     input("Press any key to continue")
     return
